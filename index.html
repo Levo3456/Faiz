@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faiz Hesaplayıcı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Faiz Hesaplayıcı</h1>
+        <form id="interestForm">
+            <label for="principal">Başlangıçtaki Ana Para Miktarı (P):</label>
+            <input type="number" id="principal" name="principal" required>
+            
+            <label for="rate">Günlük Faiz Oranı (r):</label>
+            <input type="number" id="rate" name="rate" step="0.001" required>
+            
+            <label for="days">Gün Sayısı (n):</label>
+            <input type="number" id="days" name="days" required>
+            
+            <button type="button" onclick="calculateInterest()">Hesapla</button>
+        </form>
+        <h2>Son Toplam Miktar (A): <span id="result"></span></h2>
+    </div>
+    <script>
+        function calculateInterest() {
+            const principal = parseFloat(document.getElementById('principal').value);
+            const rate = parseFloat(document.getElementById('rate').value);
+            const days = parseInt(document.getElementById('days').value);
+
+            const amount = principal * Math.pow(1 + rate, days);
+            document.getElementById('result').innerText = amount.toFixed(2);
+        }
+    </script>
+</body>
+</html>
